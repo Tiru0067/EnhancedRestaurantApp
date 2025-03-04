@@ -1,14 +1,15 @@
 nav {
   min-width: 100%;
+  padding: 0 5%;
   background-color: white;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  box-shadow: 0 0px 5px #ccc;
   max-width: 100vw;
   overflow-x: auto;
   scrollbar-width: none;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.15);
 }
 
 .nav-list {
@@ -28,18 +29,28 @@ nav {
 
 .nav-list-item.active {
   border-top: 2px solid transparent;
-  border-bottom: 2px solid #d65b5b;
+  border-bottom: 2px solid #ff6347;
 }
 
 .nav-list-item button {
   border: none;
   background-color: transparent;
-  padding: 15px 20px;
+  padding: 10px 20px;
   white-space: nowrap;
-  font-size: 1.1rem;
+  font-size: 1rem;
+  font-weight: 600;
   color: black;
 }
 
+@media (max-width: 768px) {
+  .nav-list-item button {
+    font-size: 0.9rem;
+  }
+}
+
+.nav-list-item:hover button {
+  color: #b22222;
+}
 .nav-list-item.active button {
-  color: #d65b5b;
+  color: #ff6347;
 }

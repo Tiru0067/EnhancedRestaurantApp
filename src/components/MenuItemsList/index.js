@@ -1,10 +1,13 @@
 import {useContext, useEffect, useState} from 'react'
+
 import './index.css'
+import Header from '../Header'
+import Navbar from '../Navbar'
 import MenuItem from '../MenuItem'
-import ApiDataContext from '../../context/ApiDataContext'
+import CartContext from '../../context/CartContext'
 
 const MenuItemsList = () => {
-  const {apidata, activeMenuId} = useContext(ApiDataContext)
+  const {loading, apidata, activeMenuId} = useContext(CartContext)
   const [dishes, setDishes] = useState([])
 
   useEffect(() => {
@@ -17,19 +20,20 @@ const MenuItemsList = () => {
   }, [apidata, activeMenuId])
 
   return (
-    <main className="dishes">
-      <ul className="dishes-list">
-        {dishes.length > 0 &&
-          dishes.map((item, index) => (
-            <MenuItem
-              key={item.dish_id}
-              dish={item}
-              index={index}
-              activeMenuId={activeMenuId}
-            />
-          ))}
-      </ul>
-    </main>
+    <>
+      <Header />
+      <Navbar />
+      <main className="dishes">
+        {!loading && (
+          <ul className="dishes-list">
+            {dishes.length > 0 &&
+              dishes.map((item, index) => (
+                <MenuItem key={item.dish_id} dish={item} index={index} />
+              ))}
+          </ul>
+        )}
+      </main>
+    </>
   )
 }
 export default MenuItemsList

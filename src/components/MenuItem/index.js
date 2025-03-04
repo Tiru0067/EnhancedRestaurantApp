@@ -1,10 +1,10 @@
 import {useContext, useState, useEffect} from 'react'
 import {BsFillCircleFill} from 'react-icons/bs'
-import ApiDataContext from '../../context/ApiDataContext'
+import CartContext from '../../context/CartContext'
 import './index.css'
 
-const MenuItem = ({dish, index, activeMenuId}) => {
-  const {cart, setCart} = useContext(ApiDataContext)
+const MenuItem = ({dish, index}) => {
+  const {cartList, addCartItem} = useContext(CartContext)
   const [quantity, setQuantity] = useState(0)
 
   const {
@@ -21,45 +21,14 @@ const MenuItem = ({dish, index, activeMenuId}) => {
 
   const circleColor = index % 2 === 0 ? 'green' : 'red'
 
-  const updateCart = quantityChange => {
-    setCart(prevCart => {
-      const existingItem = prevCart.find(item => item.dishId === dishId)
-      if (existingItem) {
-        const updatedCart = prevCart.map(item =>
-          item.dishId === dishId
-            ? {...item, quantity: item.quantity + quantityChange}
-            : item,
-        )
-        return updatedCart.filter(item => item.quantity > 0)
-      }
-      if (quantityChange > 0) {
-        return [
-          ...prevCart,
-          {
-            dishId,
-            dishName,
-            dishPrice,
-            dishImage,
-            quantity: 1,
-            categoryId: activeMenuId,
-          },
-        ]
-      }
-
-      return prevCart
-    })
-  }
-
-  const increaseQuantity = () => updateCart(1)
-  const decreaseQuantity = () => {
-    if (quantity > 0) updateCart(-1)
-  }
-
   useEffect(() => {
     const currentQuantity =
-      cart.find(obj => obj.dishId === dishId)?.quantity || 0
+      cartList?.find(obj => obj.dishId === dishId)?.quantity || 0
     setQuantity(currentQuantity)
-  }, [cart, dishId])
+  }, [cartList, dishId])
+
+  const handleIncrease = () => setQuantity(prev => prev + 1)
+  const handleDecrease = () => setQuantity(prev => (prev > 0 ? prev - 1 : 0))
 
   return (
     <li className="dish-item">
@@ -71,31 +40,44 @@ const MenuItem = ({dish, index, activeMenuId}) => {
           />
         </div>
 
-        <div className="dish-info">
-          <h1 className="dish-name">{dishName}</h1>
-          <p className="dish-price">
-            {dishCurrency} {dishPrice}
-          </p>
-          <p className="dish-description">{dishDescription}</p>
+        <div className="dish-info-wrapper">
+          <div className="dish-info">
+            <h1 className="dish-name">{dishName}</h1>
+            <p className="dish-price">
+              {dishCurrency} {dishPrice}
+            </p>
+            <p className="dish-description">{dishDescription}</p>
+          </div>
 
           {dishAvailability ? (
             <>
-              <div className="quantity-container">
-                <button
-                  type="button"
-                  onClick={decreaseQuantity}
-                  className="quantity-button decrease"
-                >
-                  -
-                </button>
-                <p className="quantity">{quantity}</p>
-                <button
-                  type="button"
-                  onClick={increaseQuantity}
-                  className="quantity-button increase"
-                >
-                  +
-                </button>
+              <div className="add-to-cart-container">
+                <div className="quantity-container">
+                  <button
+                    type="button"
+                    onClick={handleDecrease}
+                    className="quantity-button decrease"
+                  >
+                    -
+                  </button>
+                  <p className="quantity">{quantity}</p>
+                  <button
+                    type="button"
+                    onClick={handleIncrease}
+                    className="quantity-button increase"
+                  >
+                    +
+                  </button>
+                </div>
+                {quantity > 0 && (
+                  <button
+                    type="button"
+                    className="add-to-cart-button"
+                    onClick={() => addCartItem(dishId, quantity)}
+                  >
+                    ADD TO CART
+                  </button>
+                )}
               </div>
               {addonCat.length > 0 && (
                 <p className="customization-text">Customizations available</p>

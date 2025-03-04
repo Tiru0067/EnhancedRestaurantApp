@@ -1,9 +1,11 @@
 import {useContext, useState, useEffect} from 'react'
 import './index.css'
-import ApiDataContext from '../../context/ApiDataContext'
+import CartContext from '../../context/CartContext'
 
 const Navbar = () => {
-  const {apidata, activeMenuId, setActiveMenuId} = useContext(ApiDataContext)
+  const {loading, apidata, activeMenuId, setActiveMenuId} =
+    useContext(CartContext) // prettier-ignore
+
   const [menuList, setMenuList] = useState([])
 
   useEffect(() => {
@@ -18,27 +20,29 @@ const Navbar = () => {
 
   return (
     <nav>
-      <ul className="nav-list">
-        {menuList.length > 0 &&
-          menuList.map(item => (
-            <li
-              className={
-                activeMenuId === item.menuCategoryId
-                  ? 'nav-list-item active'
-                  : 'nav-list-item'
-              }
-              key={item.menuCategoryId}
-              value={item.menuCategoryId}
-            >
-              <button
-                type="button"
-                onClick={() => setActiveMenuId(item.menuCategoryId)}
+      {!loading && (
+        <ul className="nav-list">
+          {menuList.length > 0 &&
+            menuList.map(item => (
+              <li
+                className={
+                  activeMenuId === item.menuCategoryId
+                    ? 'nav-list-item active'
+                    : 'nav-list-item'
+                }
+                key={item.menuCategoryId}
+                value={item.menuCategoryId}
               >
-                {item.menuCategory}
-              </button>
-            </li>
-          ))}
-      </ul>
+                <button
+                  type="button"
+                  onClick={() => setActiveMenuId(item.menuCategoryId)}
+                >
+                  {item.menuCategory}
+                </button>
+              </li>
+            ))}
+        </ul>
+      )}
     </nav>
   )
 }

@@ -1,0 +1,131 @@
+.cart-wrapper {
+  width: 100%;
+  padding: 20px 5%;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+@media (max-width: 768px) {
+  .cart-wrapper {
+    flex-direction: column;
+  }
+}
+
+.cart-items-container {
+  width: 100%;
+  padding: 10px;
+}
+
+.cart-header {
+  width: 100%;
+  padding: 10px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.cart-title {
+  font-size: 2rem;
+  font-weight: 500;
+  color: #000;
+}
+
+.clear-cart-btn {
+  font-size: 0.9rem;
+  font-weight: 600;
+  background: transparent;
+  border: none;
+  padding: 10px 0px;
+  border-radius: 6px;
+}
+
+.clear-cart-btn:hover {
+  color: #fb0000;
+}
+
+.cart-columns {
+  padding: 10px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid #eee;
+}
+
+.cart-column-product,
+.cart-column-quantity,
+.cart-column-price {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #8f8f8f;
+}
+
+.cart-items-list {
+  list-style: none;
+  padding-left: 0;
+}
+
+.cart-summary-container {
+  background: white;
+  padding: 16px;
+  border-radius: 8px;
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  .cart-summary-container {
+    width: 500px;
+  }
+}
+
+.cart-summary-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 15px 20px;
+}
+
+.cart-summary-item:last-of-type {
+  border-top: 2px solid #eee;
+}
+
+.cart-label {
+  font-size: 15px;
+  color: #909aac;
+}
+
+.cart-summary-item.total {
+  font-weight: bold;
+  font-size: 16px;
+  margin-top: 8px;
+}
+
+.cart-value {
+  font-weight: bold;
+  color: #111827;
+}
+
+.checkout-button {
+  width: 100%;
+  background: #111827;
+  color: white;
+  padding: 12px;
+  border-radius: 6px;
+  font-size: 14px;
+  margin-top: 16px;
+  border: none;
+  cursor: pointer;
+}
+
+.empty-cart {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.empty-cart img {
+  width: 90%;
+  max-width: 400px;
+  margin-top: 60px;
+}

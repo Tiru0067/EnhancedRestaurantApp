@@ -28,10 +28,32 @@
   border: 2px solid transparent;
 }
 
+.dish-info-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
 .dish-info {
   display: flex;
   flex-direction: column;
   gap: 5px;
+}
+
+.dish-name {
+  font-size: 1.5rem;
+  color: #000;
+}
+
+.dish-price {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #323232;
+}
+
+.dish-description {
+  font-size: 1rem;
+  color: #555;
 }
 
 .dish-image {
@@ -92,11 +114,22 @@
 }
 
 .customization-text {
-  font-size: 1.2rem;
+  font-size: 1.1rem;
+  font-weight: 500;
   color: #806af5;
   margin-top: 10px;
 }
 
 .not-available-text {
   color: red;
+}
+
+.add-to-cart-button {
+  border: none;
+  background-color: #fed813;
+  padding: 10px 30px;
+  border-radius: 50px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  margin-top: 10px;
 }

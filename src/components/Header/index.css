@@ -1,19 +1,23 @@
-header {
+.header {
   width: 100%;
-  padding: 0px 30px;
+  padding: 0px 5%;
   height: 75px;
   background-color: white;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  box-shadow: 0 0px 5px #ccc;
+}
+
+.app-title-link {
+  text-decoration: none;
 }
 
 .app-title {
+  color: black;
   font-size: 1.75rem;
   font-weight: bold;
-  cursor: default;
+  cursor: pointer;
 }
 
 .cart-container {
@@ -31,19 +35,83 @@ header {
   cursor: pointer;
 }
 
+.cart-icon-container {
+  position: relative;
+}
+
+.cart-count-container {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 25px;
+  height: 25px;
+  background-color: #ff6347;
+  border-radius: 100%;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+}
+
 .cart-items-count {
-  font-size: 1rem;
+  font-size: 0.9rem;
   font-weight: bold;
   color: white;
-  position: absolute;
-  top: 0px;
-  right: 0px;
-  margin: 0;
-  padding: 4px 9px;
-  background-color: #ff6200;
-  border-radius: 100%;
 }
 
 .cart-icon {
-  font-size: 2.75rem;
+  font-size: 2rem;
+}
+
+.logout-btn {
+  background-color: #4caf50;
+  color: #fff;
+  padding: 8px 16px;
+  font-size: 14px;
+  border: 1px solid #388e3c;
+  border-radius: 4px;
+  cursor: pointer;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.logout-btn:hover {
+  background-color: #388e3c;
+}
+
+@media (max-width: 768px) {
+  header {
+    padding: 0 7%;
+    gap: 55px;
+  }
+
+  .app-title {
+    font-size: 1.25rem;
+  }
+
+  .cart-container {
+    gap: 0px;
+  }
+
+  .myorders-text {
+    font-size: 0.75rem;
+    font-weight: 600;
+  }
+
+  .cart-icon {
+    font-size: 1.8rem;
+  }
+
+  .cart-count-container {
+    width: 22px;
+    height: 22px;
+  }
+
+  .cart-items-count {
+    font: 0.6rem;
+  }
+
+  .logout-btn {
+    margin-left: 10px;
+  }
 }

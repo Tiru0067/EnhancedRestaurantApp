@@ -4,7 +4,8 @@ import Cookies from 'js-cookie'
 import './index.css'
 
 const Login = () => {
-  const [userDetails, setUserDetails] = useState({username: '', password: ''})
+  const [username, setUsername] = useState('')
+  const [password, setPassword] = useState('')
   const [error, setError] = useState({showSubmitError: false, errorMsg: ''})
   const [loading, setLoading] = useState(false)
 
@@ -22,7 +23,6 @@ const Login = () => {
 
   const fetchLoginDetails = async () => {
     setLoading(true)
-    const {username, password} = userDetails
     const options = {
       method: 'POST',
       body: JSON.stringify({username, password}),
@@ -41,62 +41,55 @@ const Login = () => {
     }
   }
 
-  const handleChange = event => {
-    setUserDetails(prevDetails => ({
-      ...prevDetails,
-      [event.target.name]: event.target.value,
-    }))
-  }
-
   const handleSubmit = event => {
     event.preventDefault()
     fetchLoginDetails()
   }
 
   if (Cookies.get('jwt_token')) {
-    return <Redirect to="/" />
+    return <Redirect to='/' />
   }
 
   return (
-    <div className="login">
-      <div className="login__container">
-        <h1 className="login__message">Please Login to continue</h1>
-        <form className="login__form" onSubmit={handleSubmit}>
-          <div className="login__form-group">
-            <label htmlFor="username" className="login__label">
+    <div className='login'>
+      <div className='login__container'>
+        <h1 className='login__message'>Please Login to continue</h1>
+        <form className='login__form' onSubmit={handleSubmit}>
+          <div className='login__form-group'>
+            <label htmlFor='username' className='login__label'>
               USERNAME
             </label>
             <input
-              id="username"
-              name="username"
-              className="login__input"
-              type="text"
-              placeholder="Username"
-              value={userDetails.username}
-              onChange={handleChange}
+              id='username'
+              name='username'
+              className='login__input'
+              type='text'
+              placeholder='Username'
+              value={username}
+              onChange={e => setUsername(e.target.value)}
               disabled={loading}
             />
           </div>
-          <div className="login__form-group">
-            <label htmlFor="password" className="login__label">
+          <div className='login__form-group'>
+            <label htmlFor='password' className='login__label'>
               PASSWORD
             </label>
             <input
-              id="password"
-              name="password"
-              className="login__input"
-              type="password"
-              placeholder="Password"
-              value={userDetails.password}
-              onChange={handleChange}
+              id='password'
+              name='password'
+              className='login__input'
+              type='password'
+              placeholder='Password'
+              value={password}
+              onChange={e => setPassword(e.target.value)}
               disabled={loading}
             />
           </div>
-          <button type="submit" className="login__button" disabled={loading}>
+          <button type='submit' className='login__button' disabled={loading}>
             {loading ? 'Logging in...' : 'Login'}
           </button>
           {error.showSubmitError && (
-            <p className="login__error-message">*{error.errorMsg}</p>
+            <p className='login__error-message'>*{error.errorMsg}</p>
           )}
         </form>
       </div>

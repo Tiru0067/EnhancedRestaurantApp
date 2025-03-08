@@ -4,10 +4,10 @@ import './index.css'
 import Header from '../Header'
 import Navbar from '../Navbar'
 import MenuItem from '../MenuItem'
-import CartContext from '../../context/CartContext'
+import DataContext from '../../context/DataContext'
 
 const MenuItemsList = () => {
-  const {loading, apidata, activeMenuId} = useContext(CartContext)
+  const {loading, apidata, activeMenuId} = useContext(DataContext)
   const [dishes, setDishes] = useState([])
 
   useEffect(() => {

@@ -1,10 +1,10 @@
 import {useContext, useState, useEffect} from 'react'
 import './index.css'
-import CartContext from '../../context/CartContext'
+import DataContext from '../../context/DataContext'
 
 const Navbar = () => {
   const {loading, apidata, activeMenuId, setActiveMenuId} =
-    useContext(CartContext) // prettier-ignore
+    useContext(DataContext) // prettier-ignore
 
   const [menuList, setMenuList] = useState([])
 

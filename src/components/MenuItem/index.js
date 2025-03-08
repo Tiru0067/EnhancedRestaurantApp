@@ -1,6 +1,7 @@
 import {useContext, useState, useEffect} from 'react'
 import {BsFillCircleFill} from 'react-icons/bs'
 import CartContext from '../../context/CartContext'
+
 import './index.css'
 
 const MenuItem = ({dish, index}) => {

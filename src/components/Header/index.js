@@ -5,9 +5,11 @@ import {AiOutlineShoppingCart} from 'react-icons/ai'
 
 import './index.css'
 import CartContext from '../../context/CartContext'
+import DataContext from '../../context/DataContext'
 
 const Header = () => {
-  const {loading, cartList, apidata, activeMenuId} = useContext(CartContext)
+  const {loading, apidata, activeMenuId} = useContext(DataContext)
+  const {cartList} = useContext(CartContext)
   const [cartAmount, setCartAmount] = useState(0)
 
   const history = useHistory()

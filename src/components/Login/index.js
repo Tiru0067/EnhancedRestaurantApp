@@ -7,7 +7,7 @@ const Login = () => {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState({showSubmitError: false, errorMsg: ''})
-  const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState(false)
 
   const history = useHistory()
 
@@ -22,6 +22,7 @@ const Login = () => {
   }
 
   const fetchLoginDetails = async () => {
+    setLoading(true)
     const options = {
       method: 'POST',
       body: JSON.stringify({username, password}),
